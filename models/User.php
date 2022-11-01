@@ -33,5 +33,15 @@
         public function addCreditCard($_number, $_expiryDate, $_owner, $_CVV){
             $this->creditCard = new CreditCard($_number, $_expiryDate, $_owner, $_CVV);
         }
+
+        public function pay(){
+            if($this->creditCard->isValid()){
+                $price = $this->checkOut();
+                if($this->creditCard->proceedPayment($price['finalPrice'])){
+                    $this->cart = [];
+                    //invia una mail con ricevuta/fattura
+                }
+            }
+        }
     }
 ?>
