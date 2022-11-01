@@ -1,15 +1,13 @@
 <?php
 
+    require_once __DIR__ . './creditCard.php';
+
     class User{
 
-        public $name;
-        public $surname;
-
         public $email;
-        public $creditCardNumber;
-        public $creditCardExpiryDate;
-        public $creditCardOwner;
-        public $creditCardCVV;
+        public $address = '';
+
+        public $creditCard;
 
         public $cart = [];
 
@@ -30,6 +28,10 @@
                 "vat" => $totalVat,
                 "finalPrice" => $totalPrice + $totalVat
             ];
+        }
+
+        public function addCreditCard($_number, $_expiryDate, $_owner, $_CVV){
+            $this->creditCard = new CreditCard($_number, $_expiryDate, $_owner, $_CVV);
         }
     }
 ?>
